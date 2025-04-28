@@ -4,6 +4,7 @@ import java.util.UUID;
 public class Invoice {
     private String invoiceID;
     private String paymentID;
+    private String ticketID;
     private String customerName;
     private String seatNumber;
     private String movieTitle;
@@ -11,10 +12,11 @@ public class Invoice {
     private double finalAmount;
     private Date date;
 
-    public Invoice(String paymentID, String customerName, String seatNumber,
+    public Invoice(String paymentID, String ticketID, String customerName, String seatNumber,
             String movieTitle, double totalPrice, double finalAmount, Date date) {
-        super(paymentID);
         this.invoiceID = generateUniqueID("INV");   
+        this.paymentID = paymentID;
+        this.ticketID = ticketID;
         this.customerName = customerName;
         this.seatNumber = seatNumber;
         this.movieTitle = movieTitle;
@@ -41,6 +43,14 @@ public class Invoice {
 
     public void setPaymentID() {
         this.paymentID = paymentID;
+    }
+
+    public String getTicketID() {
+        return ticketID;
+    }
+
+    public void setTicketID(String ticketID) {
+        this.ticketID = ticketID;
     }
 
     public String getCustomerName() {
@@ -98,8 +108,8 @@ public class Invoice {
     @Override
     public String toString() {
         return "Invoice" + "\nInvoiceID : " + invoiceID + "\nPayment ID : " + getPaymentID() +
-                "\nCustomer Name : " + customerName +"\nSeat Number : " + seatNumber + 
-                "\nMovie Title : " + movieTitle + "\nTotal Price : " + totalPrice +
-                "\nFinal Amount : " + finalAmount + "\nDate : " + date + "";
+                "\nTicket ID" + getTicketID() + "\nCustomer Name : " + customerName +
+                "\nSeat Number : " + seatNumber + "\nMovie Title : " + movieTitle + 
+                "\nTotal Price : " + totalPrice +"\nFinal Amount : " + finalAmount + "\nDate : " + date + "";
     }
 }
