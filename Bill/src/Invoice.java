@@ -1,6 +1,7 @@
 import java.util.Date;
+import java.util.UUID;
 
-public class Invoice{
+public class Invoice {
     private String invoiceID;
     private String paymentID;
     private String customerName;
@@ -10,10 +11,10 @@ public class Invoice{
     private double finalAmount;
     private Date date;
 
-    public Invoice(String invoiceID, String paymentID, String customerName, String seatNumber,
-                   String movieTitle, double totalPrice, double finalAmount, Date date) {
-        this.invoiceID = invoiceID;
-        this.paymentID = paymentID;
+    public Invoice(String paymentID, String customerName, String seatNumber,
+            String movieTitle, double totalPrice, double finalAmount, Date date) {
+        super(paymentID);
+        this.invoiceID = generateUniqueID("INV");   
         this.customerName = customerName;
         this.seatNumber = seatNumber;
         this.movieTitle = movieTitle;
@@ -22,71 +23,83 @@ public class Invoice{
         this.date = date;
     }
 
-    public String getInvoiceID(){
+    private String generateUniqueID(String prefix) {
+        return prefix + "-" + UUID.randomUUID().toString();
+    }
+
+    public String getInvoiceID() {
         return invoiceID;
     }
 
-    public void seyInvoiceID(String invoiceID){
+    public void seyInvoiceID(String invoiceID) {
         this.invoiceID = invoiceID;
     }
 
-    public String getPaymentID(){
+    public String getPaymentID() {
         return paymentID;
     }
-    
-    public void setPaymentID(){
+
+    public void setPaymentID() {
         this.paymentID = paymentID;
     }
 
-    public String getCustomerName(){
+    public String getCustomerName() {
         return customerName;
     }
 
-    public void setCustomerName(){
+    public void setCustomerName() {
         this.customerName = customerName;
     }
 
-    public String getSeatNumber(){
+    public String getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(String seatNumber){
+    public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
 
-    public String getMovieTitle(){
+    public String getMovieTitle() {
         return movieTitle;
     }
 
-    public void setMovieTitle(String movieTitle){
+    public void setMovieTitle(String movieTitle) {
         this.movieTitle = movieTitle;
     }
 
-    public double getTotalPrice(){
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice){
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public double getFinalAmount(){
+    public double getFinalAmount() {
         return finalAmount;
     }
 
-    public void setFinalAmount(double finalAmount){
+    public void setFinalAmount(double finalAmount) {
         this.finalAmount = finalAmount;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         this.date = date;
     }
 
     public double calculateFinalAmount() {
         return finalAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice" + "\nInvoiceID : " + invoiceID + "\nPayment ID : " + getPaymentID() +
+                "\nCustomer Name : " + customerName +"\nSeat Number : " + seatNumber + 
+                "\nMovie Title : " + movieTitle + "\nTotal Price : " + totalPrice +
+                "\nFinal Amount : " + finalAmount + "\nDate : " + date + "";
     }
 }

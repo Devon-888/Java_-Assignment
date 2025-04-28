@@ -1,35 +1,42 @@
-public class Ticket {
-    private int ticketID;
+public class Ticket{
+    private String ticketID;
     private Customer customer;
     private Payment payment;
+    private static int idCounter = 1;
 
-    public Ticket(int ticketID, Customer customer, Payment payment) {
-        this.ticketID = ticketID;
+    public Ticket(Customer customer, Payment payment) {
+        this.ticketID = generateTicketID();
         this.customer = customer;
         this.payment = payment;
     }
 
-    public int getTicketID(){
+    private static String generateTicketID() {
+        return "A" + String.format("%03d", idCounter++); 
+    }
+
+    public String getTicketID() {
         return ticketID;
     }
 
-    public void setTicketID(int ticketID){
-        this.ticketID = ticketID;
-    }
-
-    public Customer getCustomer(){
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer){
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public Payment getPayment(){
+    public Payment getPayment() {
         return payment;
     }
 
-    public void setPayment(Payment payment){
+    public void setPayment(Payment payment) {
         this.payment = payment;
-  
+
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket" + "\nTicketID : " + ticketID + "\nCustomer : " + customer + "\nPayment : " + payment + "";
+    }
 }
