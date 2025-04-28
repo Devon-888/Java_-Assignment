@@ -29,19 +29,7 @@ public class Ticket {
         return payment;
     }
 
-    PUBLIC void setPayment(Payment payment){
+    public void setPayment(Payment payment){
         this.payment = payment;
-    }
-
-    public void generateTicket() {
-        System.out.println("Ticket Owner: " + customer.getName());
-    }
-
-    public void cancelTicket() {
-        System.out.println("Ticket ID " + ticketID + " has been cancelled.");
-    }
-
-    public void checkTicketStatus() {
-        System.out.println("Checking ticket status for Ticket ID: " + ticketID);
-    }
+  
 }
