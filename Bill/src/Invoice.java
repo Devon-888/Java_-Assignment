@@ -1,9 +1,10 @@
 import java.util.Date;
 import java.util.UUID;
 
-public class Invoice {
+public class Invoice{
     private String invoiceID;
     private String paymentID;
+    private payment payment;
     private String ticketID;
     private String customerName;
     private String seatNumber;
@@ -12,10 +13,11 @@ public class Invoice {
     private double finalAmount;
     private Date date;
 
-    public Invoice(String paymentID, String ticketID, String customerName, String seatNumber,
+    public Invoice(String paymentID, payment payment, String ticketID, String customerName, String seatNumber,
             String movieTitle, double totalPrice, double finalAmount, Date date) {
         this.invoiceID = generateUniqueID("INV");   
-        this.paymentID = paymentID;
+        this.paymentID = payment.getpaymentID();
+        this.payment = payment;
         this.ticketID = ticketID;
         this.customerName = customerName;
         this.seatNumber = seatNumber;
@@ -41,8 +43,16 @@ public class Invoice {
         return paymentID;
     }
 
-    public void setPaymentID() {
+    public void setPaymentID(String paymentID) {
         this.paymentID = paymentID;
+    }
+
+    public payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(payment payment) {
+        this.payment = payment;
     }
 
     public String getTicketID() {
@@ -57,7 +67,7 @@ public class Invoice {
         return customerName;
     }
 
-    public void setCustomerName() {
+    public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
@@ -110,6 +120,7 @@ public class Invoice {
         return "Invoice" + "\nInvoiceID : " + invoiceID + "\nPayment ID : " + getPaymentID() +
                 "\nTicket ID" + getTicketID() + "\nCustomer Name : " + customerName +
                 "\nSeat Number : " + seatNumber + "\nMovie Title : " + movieTitle + 
-                "\nTotal Price : " + totalPrice +"\nFinal Amount : " + finalAmount + "\nDate : " + date + "";
+                "\nTotal Price : " + payment.gettotalprice() +"\nFinal Amount : " + payment.getpaymentamount() + "\nDate : " + date + 
+                "\nPayment Status : " + (payment.getpaymentstatus() ? "Success" : "Failed")  + "";
     }
 }

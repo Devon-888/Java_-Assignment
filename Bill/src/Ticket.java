@@ -1,10 +1,10 @@
 public class Ticket{
     private String ticketID;
     private Customer customer;
-    private Payment payment;
+    private payment payment;
     private static int idCounter = 1;
 
-    public Ticket(Customer customer, Payment payment) {
+    public Ticket(Customer customer, payment payment) {
         this.ticketID = generateTicketID();
         this.customer = customer;
         this.payment = payment;
@@ -26,11 +26,11 @@ public class Ticket{
         this.customer = customer;
     }
 
-    public Payment getPayment() {
+    public payment getPayment() {
         return payment;
     }
 
-    public void setPayment(Payment payment) {
+    public void setPayment(payment payment) {
         this.payment = payment;
 
     }
